@@ -5,7 +5,16 @@ const cookieParser = require('cookie-parser');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('secret-key'));
+
+app.get('/signingcookie', (req, res) => {
+    res.cookie("item", "handphone", { signed: true });
+    res.send('Signed cookie');
+})
+
+app.get('/verifycookie', (req, res) => {
+    res.send(req.signedCookies);
+})
 
 app.use("/admin", require("./routes/admin"))
 app.use("/theaters", require("./routes/theater"));
