@@ -10,6 +10,8 @@ router.use((req, res, next) => {
 });
 
 router.get("/", (req, res) => {
+  res.cookie("tes", "coba");
+  res.cookie("tos", "cookies");
   res.send("Administrator");
 });
 

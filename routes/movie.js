@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("Movie list");
+  const { tes } = req.cookies;
+  const { tos = "default" } = req.cookies;
+  res.send(`${tes} ${tos}`);
 });
 
 router.get("/:id", (req, res) => {
@@ -19,10 +21,10 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   res.send("Movie update");
-})
+});
 
 router.delete("/:id", (req, res) => {
   res.send("Movie delete");
-})
+});
 
 module.exports = router;
